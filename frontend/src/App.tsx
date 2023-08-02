@@ -1,7 +1,9 @@
+import Controller from "./components/Controller";
+
 function App() {
 	return (
 		<div>
-			<p className="text-2xl">Hello</p>
+			<Controller />
 		</div>
 	);
 }

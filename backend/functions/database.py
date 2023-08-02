@@ -2,7 +2,7 @@ import json
 import random
 
 
-def get_recent_message():
+def get_recent_messages():
     file_name = "stored_data.json"
     learn_instruction = {
         "role": "system",
@@ -33,3 +33,20 @@ def get_recent_message():
         pass
 
     return messages
+
+
+def store_message(request_message, response_message):
+    file_name = "stored_data.json"
+    messages = get_recent_messages()[1:]
+    user_message = {"role": "user", "content": request_message}
+    assistant_message = {"role": "assistant", "content": response_message}
+    messages.append(user_message)
+    messages.append(assistant_message)
+
+    with open(file_name, "w") as f:
+        json.dump(messages, f)
+
+
+def reset_conversation():
+    file_name = "stored_data.json"
+    open(file_name, "w")
